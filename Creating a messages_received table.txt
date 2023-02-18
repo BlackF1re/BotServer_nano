@@ -1,0 +1,12 @@
+﻿CREATE TABLE "received_messages" (
+	"username"	TEXT,
+	"is_bot"	INTEGER,
+	"first_name"	TEXT,
+	"last_name"	TEXT,
+	"language_code"	TEXT,
+	"chat_id"	INTEGER,
+	"message_id"	INTEGER,
+	"message_date"	TEXT,
+	"chat_type"	TEXT,
+	"message_content"	BLOB
+)
