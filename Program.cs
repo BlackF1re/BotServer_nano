@@ -20,8 +20,6 @@ internal class Program
 
     private static async Task Main() //string[] args
     {
-
-
         using CancellationTokenSource cts = new();
         User me = await botClient.GetMeAsync();
 
@@ -29,8 +27,8 @@ internal class Program
                                  pollingErrorHandler: HandlePollingErrorAsync,
                                  cancellationToken: cts.Token);
         //Console output on starting
-        Console.WriteLine($"Start listening bot @{me.Username} named as {me.FirstName}. Timestamp: {DateTime.Now}\n");
-        Console.WriteLine("-----------------------------------------------------------------------------------------------");
+        Console.Write($"Start listening bot @{me.Username} named as {me.FirstName}. Timestamp: {DateTime.Now}\n");
+        Console.Write("-----------------------------------------------------------------------------------------------\n");
         Console.ReadLine();
         // отправка запроса отмены для остановки
         cts.Cancel();
@@ -174,10 +172,10 @@ internal class Program
     {
         using StreamWriter logWriter = new(logPath, true); //инициализация экземпляра Streamwriter
 
-        await logWriter.WriteLineAsync($"Received a '{messageText}' message from @{message.Chat.Username} aka {message.Chat.FirstName} {message.Chat.LastName} in chat {chatId} at {DateTime.Now}."); //эхо                                                                                                                                                                                                       //await logWriter.FlushAsync();
-        await logWriter.WriteLineAsync("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        await logWriter.WriteLineAsync($"Raw message: {Newtonsoft.Json.JsonConvert.SerializeObject(message)}");
-        await logWriter.WriteLineAsync("--------------------------------------------------------------------------------------------------------------------");
+        await logWriter.WriteAsync($"Received a '{messageText}' message from @{message.Chat.Username} aka {message.Chat.FirstName} {message.Chat.LastName} in chat {chatId} at {DateTime.Now}.\n"); //эхо                                                                                                                                                                                                       //await logWriter.FlushAsync();
+        await logWriter.WriteAsync("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+        await logWriter.WriteAsync($"Raw message: {Newtonsoft.Json.JsonConvert.SerializeObject(message)}\n");
+        await logWriter.WriteAsync("--------------------------------------------------------------------------------------------------------------------\n");
 
     }
 
